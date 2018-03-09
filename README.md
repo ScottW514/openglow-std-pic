@@ -1,7 +1,7 @@
 # Firmware for OpenGlow STD PIC16F1713 MCU.
 I2C BUS0, Slave Address 0x08  
   
-To test, use ```i2c-utils```.  
+To test, use ```i2c-tools```.  
 Example to read PIC's internal temp sensor:
 ```console
 root@openglow_std:/# i2cset -y 0 0x08 0x1d 0x01
