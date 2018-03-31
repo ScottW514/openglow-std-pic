@@ -37,6 +37,10 @@
     extern "C" {
 #endif
 
+#define X_IREF 0x1
+#define Y_IREF 0x2
+
+        
 /*
  Initialize IREF 
 */
@@ -45,7 +49,7 @@ void IREF_Init(void);
 /*
  Process IREF Events
 */
-void IREF_ProcessWrite(uint8_t, uint8_t);
+void IREF_SetOutput(uint8_t, uint16_t);
 
 #ifdef __cplusplus
     }

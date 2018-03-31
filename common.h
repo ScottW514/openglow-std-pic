@@ -31,11 +31,10 @@
 #ifndef _COMMON_H
 #define _COMMON_H
 
-#define _XTAL_FREQ  32000000
+#define _XTAL_FREQ  8000000
 
-#define _VERSION_MAJOR 0x01
-#define _VERSION_MINOR 0x02
-#define _VERSION_PATCH 0x03
+#define _VERSION 0x0103 // MSB=Major, LSB=Minor 
+#define _VENDOR  0x4F47 // 'OG'
 
 #include <stdbool.h>
 #include <stdint.h>

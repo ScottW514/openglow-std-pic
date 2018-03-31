@@ -33,31 +33,19 @@
 
 #include "common.h"
 
-#define BTN_R_INIT_VALUE 0x0
-#define BTN_G_INIT_VALUE 0x0
-#define BTN_B_INIT_VALUE 0x0
-#define LID_INIT_VALUE 0x1F4
+#define LED_LID     0x0
+#define LED_BTN_R   0x1
+#define LED_BTN_G   0x2
+#define LED_BTN_B   0x3
 
-#define LED_BTN_RED_MSB 0xF0
-#define LED_BTN_RED_LSB 0xF1
-#define LED_BTN_GRN_MSB 0xF2
-#define LED_BTN_GRN_LSB 0xF3
-#define LED_BTN_BLU_MSB 0xF4
-#define LED_BTN_BLU_LSB 0xF5
-#define LED_LID_MSB 0xF6
-#define LED_LID_LSB 0xF7
+#define BTN_R_INIT_VALUE 0x000
+#define BTN_G_INIT_VALUE 0x000
+#define BTN_B_INIT_VALUE 0x000
+#define LID_INIT_VALUE   0x1F4
 
 #ifdef __cplusplus
     extern "C" {
 #endif
-
-/*
- LED Duty Cycle Registers
-*/
-volatile uint16_t LED_BTN_RED;
-volatile uint16_t LED_BTN_GRN;
-volatile uint16_t LED_BTN_BLU;
-volatile uint16_t LED_LID;
 
 /*
  Initialize LEDs 
@@ -65,14 +53,14 @@ volatile uint16_t LED_LID;
 void LED_Init(void);
 
 /*
- Process LED Events
+ Set LED Duty Cycle
 */
-void LED_ProcessWrite(uint8_t, uint8_t);
+void LED_Set_DutyCycle(uint8_t, uint16_t);
 
 /*
- Load LED Duty Cycle Values
+ Get LED Duty Cycle
 */
-void LED_LoadDutyCycles(void);
+uint16_t LED_Get_DutyCycle(uint8_t);
 
 #ifdef __cplusplus
     }

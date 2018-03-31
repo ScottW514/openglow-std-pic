@@ -38,94 +38,32 @@
 volatile uint16_t SENS_VAL[0x20];
 
 /*
-    Initialize IREF
+    Initialize ADC
 */
 void ADC_Init(void) {
     // Initialize ADC 
     ADCON0 = 0x01; // GO_nDONE stop / ADON enabled/CHS AN0
-    ADCON1 = 0x50; // ADFM left / ADNREF VSS /ADPREF VDD / ADCS FOSC/16
+    ADCON1 = 0xD0; // ADFM right / ADNREF VSS /ADPREF VDD / ADCS FOSC/16
     ADCON2 = 0x00; // TRIGSEL no_auto_trigger
-    // Clear Address Select
     ADRESL = 0x00;
     ADRESH = 0x00;
 }
 
 /*
- Initiate ADC Capture Cycle
+ Run ADC Capture Cycle
 */
-void ADC_ProcessCapture(uint8_t address) {
-    if (ADC_isADC(address)) {
-        // Set ADC Channel and fire up module
-        ADCON0bits.CHS = (uint8_t)(address & 0x1F);
-        // Fire up module
-        ADCON0bits.ADON = 1;
-        // Pause
-        __delay_us(ADC_DELAY);
-        // Kick off the conversion cycle
-        ADCON0bits.GO_nDONE = 1;
-        while (ADCON0bits.GO_nDONE){
-            // We wait. Patiently.
-        }
-        // Done with conversion - store it
-        uint16_t temp = (uint16_t)((ADRESH << 8) + ADRESL);
-        SENS_VAL[address] = temp;
-        NOP();
+uint16_t ADC_ProcessCapture(uint8_t address) {
+    // Set ADC Channel and fire up module
+    ADCON0bits.CHS = (uint8_t)(address & 0x1F);
+    // Fire up module
+    ADCON0bits.ADON = 1;
+    // Pause
+    __delay_us(ADC_DELAY);
+    // Kick off the conversion cycle
+    ADCON0bits.GO_nDONE = 1;
+    while (ADCON0bits.GO_nDONE){
+        // We wait. Patiently.
     }
-}
-
-/*
- Return ADC readings
-*/
-uint8_t ADC_ProcessRead(uint8_t address) {
-    if (address >= 0x40) {
-        address = (uint8_t)(address - 0x40);
-        if (ADC_isADC(address)) {
-            // Read LSB
-            return (uint8_t)(SENS_VAL[address] & 0x00FF);
-        }
-    } else {
-        address = (uint8_t)(address - 0x20);
-        if (ADC_isADC(address)) {
-            // Read MSB
-            return (uint8_t)((SENS_VAL[address] & 0xFF00) >> 8);
-        }
-    }
-    return 0x00;
-}
-
-/*
- Is this an ADC
-*/
-bool ADC_isADC(uint8_t address) {
-    switch (address) {
-        case HV_SENS:
-            break;
-        case LID_SENS1:
-            break;
-        case LID_SENS2:
-            break;
-        case LID_SENS3:
-            break;
-        case LID_SENS4:
-            break;
-        case PWR_SENS:
-            break;
-        case TEC_SENS:
-            break;
-        case WTR_SENS1:
-            break;
-        case WTR_SENS2:
-            break;
-        case DAC1_ADC:
-            break;
-        case DAC2_ADC:
-            break;
-        case FVR_ADC:
-            break;
-        case TEMP_ADC:
-            break;
-        default:
-            return false;
-    }
-    return true;
+    // Done with conversion - return it
+    return (uint16_t)((ADRESH << 8) + ADRESL);
 }

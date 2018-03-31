@@ -31,8 +31,6 @@
 #ifndef _ADC_H
 #define _ADC_H
 
-#define _XTAL_FREQ  32000000
-
 #include "common.h"
 
 #define HV_SENS     0x12
@@ -62,17 +60,7 @@ void ADC_Init(void);
 /*
  Initiate ADC Capture Cycle
 */
-void ADC_ProcessCapture(uint8_t);
-
-/*
- Process I2C Data
-*/
-uint8_t ADC_ProcessRead(uint8_t);
-
-/*
- Is this an ADC
-*/
-bool ADC_isADC(uint8_t);
+uint16_t ADC_ProcessCapture(uint8_t);
 
 #ifdef __cplusplus
     }

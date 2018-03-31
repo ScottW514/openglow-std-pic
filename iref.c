@@ -35,7 +35,7 @@
 */
 void IREF_Init(void) {
     // Fixed Voltage Reference
-    FVRCON = 0x8A; // CDAFVR 2x / FVREN enabled / TSRNG Lo_range / ADFVR 2x / TSEN disabled
+    FVRCON = 0xAA; // CDAFVR 2x / FVREN enabled / TSRNG Lo_range / ADFVR 2x / TSEN enabled
 
     // X-IREF DAC1 / OPA1
     DAC1CON0 = 0x88; // DAC1EN enabled / DAC1NSS VSS / DAC1PSS FVR / DAC1OE1 disabled / DAC1OE2 disabled
@@ -52,10 +52,16 @@ void IREF_Init(void) {
 /*
  Process I2C Data
 */
-void IREF_ProcessWrite(uint8_t address, uint8_t value) {
-    if (address == 0xE0) {
-        DAC1CON1 = value;
-    } else if (address == 0xE1) {
-        DAC2CON1 = value;
+void IREF_SetOutput(uint8_t dac_unit, uint16_t value) {
+    if (dac_unit == X_IREF) {
+        if (value > 0x00FF) {
+            value = 0x00FF;
+        }
+        DAC1CON1 = (uint8_t)value;
+    } else if (dac_unit == Y_IREF) {
+        if (value > 0x001F) {
+            value = 0x001F;
+        }
+        DAC2CON1 = (uint8_t)value;
     }
 }

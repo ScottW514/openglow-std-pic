@@ -45,7 +45,7 @@ typedef enum
 {
     I2C_W_REQ,
     I2C_R_REQ,
-    I2C_W_COMPLETED,
+    I2C_W_DATA,
     I2C_R_COMPLETED,
 } I2C_DRIVER_STATUS;
 
@@ -68,6 +68,11 @@ void I2C_Process(I2C_DRIVER_STATUS);
  Data written to slave
 */
 extern volatile uint8_t I2C_wData;
+
+/*
+ Returns MSB or LSB of 16 bit value 
+*/
+uint8_t _get_significant(uint16_t, bool);
 
 #ifdef __cplusplus
     }

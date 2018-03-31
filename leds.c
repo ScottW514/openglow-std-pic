@@ -30,14 +30,6 @@
 #include "leds.h"
 
 /*
- Global Variables
-*/
-volatile uint16_t LED_BTN_RED = BTN_R_INIT_VALUE;
-volatile uint16_t LED_BTN_GRN = BTN_G_INIT_VALUE;
-volatile uint16_t LED_BTN_BLU = BTN_B_INIT_VALUE;
-volatile uint16_t LED_LID = LID_INIT_VALUE;
-
-/*
     Initialize LEDs
 */
 void LED_Init(void) {
@@ -49,88 +41,81 @@ void LED_Init(void) {
 
     // Setup PWM for BTN RED LED
     PWM4CON = 0x80; // PWM4POL active_hi / PWM4OUT disabled / PWM4EN enabled
-    PWM4DCH = 0;
-    PWM4DCL = 0;   
+    PWM4DCH = (uint8_t)((BTN_R_INIT_VALUE & 0x3FC) >> 2);
+    PWM4DCL = (uint8_t)((BTN_R_INIT_VALUE & 0x003) << 6);   
     CCPTMRSbits.P4TSEL = 0x0; // Select TMR2
 
     // Setup PWM for BTN GRN LED
-	CCP2CON = 0x3C; // CCP2M PWM / DC2B 3 
-	CCPR2L = 0;    
-	CCPR2H = 0;    
+	CCP2CON = 0x0C; // CCP2M PWM / DC2B 3
+    CCP2CON = (uint8_t)((CCP2CON & 0xCF) | (uint8_t)((BTN_G_INIT_VALUE & 0x003) << 4));
+	CCPR2L =  (uint8_t)((BTN_G_INIT_VALUE & 0x3FC) >> 2);
+	CCPR2H =  0x00;
 	CCPTMRSbits.C2TSEL = 0x0; // Select TMR2
 
     // Setup PWM for BTN BLU LED
-	CCP1CON = 0x3C; // CCP1M PWM / DC1B 3
-	CCPR1L = 0;
-	CCPR1H = 0;
+	CCP1CON = 0x0C; // CCP1M PWM / DC1B 3
+    CCP1CON = (uint8_t)((CCP1CON & 0xCF) | (uint8_t)((BTN_B_INIT_VALUE & 0x003) << 4));
+	CCPR1L =  (uint8_t)((BTN_B_INIT_VALUE & 0x3FC) >> 2);
 	CCPTMRSbits.C1TSEL = 0x0; // Select TMR2
 
     // Setup PWM for LID LEDs
     PWM3CON = 0x80; // PWM3POL active_hi / PWM3OUT disabled / PWM3EN enabled
-    PWM3DCH = 0;
-    PWM3DCL = 0;
+    PWM3DCH = (uint8_t)((LID_INIT_VALUE & 0x3FC) >> 2);
+    PWM3DCL = (uint8_t)((LID_INIT_VALUE & 0x003) << 6);
     CCPTMRSbits.P3TSEL = 0x0; // Select TMR2
 }
 
 /*
- Process I2C Data
+ SET LED Duty Cycle
 */
-void LED_ProcessWrite(uint8_t address, uint8_t value) {
-    uint16_t value16 = value;
-    if (address & 1) {
-        // Processing the LSB - We load duty cycles when done
-        switch (address) {
-            case LED_BTN_RED_LSB:
-                LED_BTN_RED = (LED_BTN_RED & 0xFF00) + value16;
-                break;
-            case LED_BTN_GRN_LSB:
-                LED_BTN_GRN = (LED_BTN_GRN & 0xFF00) + value16;
-                break;
-            case LED_BTN_BLU_LSB:
-                LED_BTN_BLU = (LED_BTN_BLU & 0xFF00) + value16;
-                break;
-            case LED_LID_LSB:
-                LED_LID = (LED_LID & 0xFF00) + value16;
-                break;
-        }
-        LED_LoadDutyCycles();
-    } else {
-        // Processing the MSB
-        value16 = value16 << 8;
-        switch (address) {
-            case LED_BTN_RED_MSB:
-                LED_BTN_RED = (LED_BTN_RED & 0x00FF) + value16;
-                break;
-            case LED_BTN_GRN_MSB:
-                LED_BTN_GRN = (LED_BTN_GRN & 0x00FF) + value16;
-                break;
-            case LED_BTN_BLU_MSB:
-                LED_BTN_BLU = (LED_BTN_BLU & 0x00FF) + value16;
-                break;
-            case LED_LID_MSB:
-                LED_LID = (LED_LID & 0x00FF) + value16;
-                break;
-        }
+void LED_Set_DutyCycle(uint8_t led, uint16_t dutycycle) {
+    if (dutycycle > 0x3FF) {
+        dutycycle = 0x3FF;
+    }
+    switch (led)
+    {
+        case LED_LID:
+            PWM3DCH = (uint8_t)((dutycycle & 0x3FC) >> 2); // 8 High Bits
+            PWM3DCL = (uint8_t)((dutycycle & 0x003) << 6); // 2 Low Bits
+            break;
+        case LED_BTN_R:
+            PWM4DCH = (uint8_t)((dutycycle & 0x3FC) >> 2); // 8 High Bits
+            PWM4DCL = (uint8_t)((dutycycle & 0x003) << 6); // 2 Low Bits
+            break;
+        case LED_BTN_G:
+            CCPR2L =  (uint8_t)((dutycycle & 0x3FC) >> 2);                               // 8 High Bits
+            CCP2CON = (uint8_t)((CCP2CON & 0xCF) | (uint8_t)((dutycycle & 0x003) << 4)); // 2 LSBs
+            break;
+        case LED_BTN_B:
+            CCPR1L =  (uint8_t)((dutycycle & 0x3FC) >> 2);                               // 8 High Bits
+            CCP1CON = (uint8_t)((CCP1CON & 0xCF) | (uint8_t)((dutycycle & 0x003) << 4)); // 2 LSBs
+            break;
+        default:;
     }
 }
 
 /*
- Load LED Duty Cycle Values
+ GET LED Duty Cycle
 */
-void LED_LoadDutyCycles(void) {
-    // BTN RED LED
-    PWM4DCH = (LED_BTN_RED & 0x3FC)>>2; // 8 MSBs
-    PWM4DCL = (LED_BTN_RED & 0x3)<<6; // 2 LSBs
-
-    // BTN GRN LED
-    CCPR2L = ((LED_BTN_GRN & 0x3FC)>>2); // 8 MSBs
-    CCP2CON = ((uint8_t)(CCP2CON & 0xCF) | ((LED_BTN_GRN & 0x3)<<4)); // 2 LSBs
-
-    // BTN BLU LED
-    CCPR1L = ((LED_BTN_BLU & 0x3FC)>>2); // 8 MSBs
-    CCP1CON = ((uint8_t)(CCP1CON & 0xCF) | ((LED_BTN_BLU & 0x3)<<4)); // 2 LSBs
-
-    // LID LEDs
-    PWM3DCH = (LED_LID & 0x03FC)>>2; // 8 MSBs
-    PWM3DCL = (LED_LID & 0x0003)<<6; // 2 LSBs
+uint16_t LED_Get_DutyCycle(uint8_t led) {
+    static uint16_t value = 0;
+    switch (led)
+    {
+        case LED_LID:
+            value = (((uint16_t)PWM3DCH) << 2) + (uint16_t)(PWM3DCL >> 6);
+            break;
+        case LED_BTN_R:
+            value = (((uint16_t)PWM4DCH) << 2) + (uint16_t)(PWM4DCL >> 6);
+            break;
+        case LED_BTN_G:
+            value = (((uint16_t)CCPR2L) << 2) + (uint16_t)((CCP2CON & 0x30) >> 4);
+            break;
+        case LED_BTN_B:
+            value = (((uint16_t)CCPR1L) << 2) + (uint16_t)((CCP1CON & 0x30) >> 4);
+            break;
+        default:
+            value = 0xDEAD;
+            break;
+    }
+    return value;
 }
