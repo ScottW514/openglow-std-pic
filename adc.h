@@ -3,8 +3,8 @@
 
     This file is part of OpenGlow Standard PIC Firmware.
 
-    OpenGlow Standard PIC Firmware is free software: you can redistribute it 
-    and/or modify it under the terms of the GNU General Public License as 
+    OpenGlow Standard PIC Firmware is free software: you can redistribute it
+    and/or modify it under the terms of the GNU General Public License as
     published by the Free Software Foundation, either version 3 of the License,
     or (at your option) any later version.
 
@@ -14,7 +14,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with OpenGlow Standard PIC Firmware. If not, see 
+    along with OpenGlow Standard PIC Firmware. If not, see
     <http://www.gnu.org/licenses/>.
 */
 /*
@@ -26,6 +26,14 @@
   Target Device   :  PIC16F1713
   Development IDE :  MPLAB X v4.15
   Compiler        :  XC8 1.45
+
+
+ PIC Temperature Indicator Module:
+  F = ((9/5)*((.659-((3.3/2)*(1-(TEMP_ADC/1023))))/.00132)) + 32
+  C = (.659-((3.3/2)*(1-(TEMP_ADC/1023))))/.00132
+
+ PIC ADC Result to Voltage:
+  Vin = (3.3/1023) * ADC_RESULT
 */
 
 #ifndef _ADC_H
@@ -33,7 +41,8 @@
 
 #include "common.h"
 
-#define HV_SENS     0x12
+#define HV_SENS1    0x12
+#define HV_SENS2    0x13
 #define LID_SENS1   0x08
 #define LID_SENS2   0x09
 #define LID_SENS3   0x0B
@@ -53,7 +62,7 @@
 #endif
 
 /*
- Initialize ADCs 
+ Initialize ADCs
 */
 void ADC_Init(void);
 

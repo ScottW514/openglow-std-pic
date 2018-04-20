@@ -11,6 +11,10 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
+$/tmp/xcXieql9q.obj
+reset_vec CODE 0 0 0 2 2
+end_init CODE 0 18 18 2 2
+config CONFIG 0 8007 8007 2 2
 $dist/default/production/OpenGlow-Std-PIC.X.production.obj
 cinit CODE 0 1A 1A B 2
 text1 CODE 0 238 238 2A 2
@@ -30,10 +34,6 @@ cstackBANK0 BANK0 1 68 68 6 1
 intentry CODE 0 4 4 14 2
 bssBANK0 BANK0 1 20 20 48 1
 clrtext CODE 0 2F3 2F3 6 2
-$/tmp/xcXh7hECS.obj
-reset_vec CODE 0 0 0 2 2
-end_init CODE 0 18 18 2 2
-config CONFIG 0 8007 8007 2 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -113,18 +113,18 @@ STRING 2F9-FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/OpenGlow-Std-PIC.X.production.obj
-1A cinit CODE >3104:/tmp/xcXz86lWY
-1A cinit CODE >3107:/tmp/xcXz86lWY
-1A cinit CODE >3149:/tmp/xcXz86lWY
-1B cinit CODE >3150:/tmp/xcXz86lWY
-1C cinit CODE >3151:/tmp/xcXz86lWY
-1D cinit CODE >3152:/tmp/xcXz86lWY
-1E cinit CODE >3153:/tmp/xcXz86lWY
-1F cinit CODE >3154:/tmp/xcXz86lWY
-21 cinit CODE >3160:/tmp/xcXz86lWY
-21 cinit CODE >3162:/tmp/xcXz86lWY
-22 cinit CODE >3163:/tmp/xcXz86lWY
-23 cinit CODE >3164:/tmp/xcXz86lWY
+1A cinit CODE >3104:/tmp/xcXkrvcKR
+1A cinit CODE >3107:/tmp/xcXkrvcKR
+1A cinit CODE >3149:/tmp/xcXkrvcKR
+1B cinit CODE >3150:/tmp/xcXkrvcKR
+1C cinit CODE >3151:/tmp/xcXkrvcKR
+1D cinit CODE >3152:/tmp/xcXkrvcKR
+1E cinit CODE >3153:/tmp/xcXkrvcKR
+1F cinit CODE >3154:/tmp/xcXkrvcKR
+21 cinit CODE >3160:/tmp/xcXkrvcKR
+21 cinit CODE >3162:/tmp/xcXkrvcKR
+22 cinit CODE >3163:/tmp/xcXkrvcKR
+23 cinit CODE >3164:/tmp/xcXkrvcKR
 4 intentry CODE >128:/home/scott/Dropbox/DEV/MPLABXProjects/OpenGlow-Std-PIC.X/main.c
 9 intentry CODE >129:/home/scott/Dropbox/DEV/MPLABXProjects/OpenGlow-Std-PIC.X/main.c
 B intentry CODE >131:/home/scott/Dropbox/DEV/MPLABXProjects/OpenGlow-Std-PIC.X/main.c
@@ -328,14 +328,14 @@ FA text7 CODE >100:/home/scott/Dropbox/DEV/MPLABXProjects/OpenGlow-Std-PIC.X/i2c
 1DA maintext CODE >116:/home/scott/Dropbox/DEV/MPLABXProjects/OpenGlow-Std-PIC.X/main.c
 1DB maintext CODE >117:/home/scott/Dropbox/DEV/MPLABXProjects/OpenGlow-Std-PIC.X/main.c
 1DC maintext CODE >120:/home/scott/Dropbox/DEV/MPLABXProjects/OpenGlow-Std-PIC.X/main.c
-2F3 clrtext CODE >3138:/tmp/xcXz86lWY
-2F3 clrtext CODE >3139:/tmp/xcXz86lWY
-2F4 clrtext CODE >3140:/tmp/xcXz86lWY
-2F4 clrtext CODE >3141:/tmp/xcXz86lWY
-2F5 clrtext CODE >3142:/tmp/xcXz86lWY
-2F6 clrtext CODE >3143:/tmp/xcXz86lWY
-2F7 clrtext CODE >3144:/tmp/xcXz86lWY
-2F8 clrtext CODE >3145:/tmp/xcXz86lWY
+2F3 clrtext CODE >3138:/tmp/xcXkrvcKR
+2F3 clrtext CODE >3139:/tmp/xcXkrvcKR
+2F4 clrtext CODE >3140:/tmp/xcXkrvcKR
+2F4 clrtext CODE >3141:/tmp/xcXkrvcKR
+2F5 clrtext CODE >3142:/tmp/xcXkrvcKR
+2F6 clrtext CODE >3143:/tmp/xcXkrvcKR
+2F7 clrtext CODE >3144:/tmp/xcXkrvcKR
+2F8 clrtext CODE >3145:/tmp/xcXkrvcKR
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -378,10 +378,10 @@ _WPUA 20C 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 _WPUB 20D 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 _WPUC 20E 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 _WPUE 210 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
-___sp 0 0 STACK 2 stack /tmp/xcXh7hECS.obj
+___sp 0 0 STACK 2 stack /tmp/xcXieql9q.obj
 _main 2FE 0 CODE 0 maintext dist/default/production/OpenGlow-Std-PIC.X.production.obj
 btemp 7E 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
-start 30 0 CODE 0 init /tmp/xcXh7hECS.obj
+start 30 0 CODE 0 init /tmp/xcXieql9q.obj
 _RC3PPSbits EA3 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 _OPTION_REGbits 95 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
@@ -395,12 +395,12 @@ __Hpowerup 0 0 CODE 0 powerup -
 IREF_SetOutput@dac_unit 72 0 COMMON 1 cstackCOMMON dist/default/production/OpenGlow-Std-PIC.X.production.obj
 _I2C_wData 67 0 BANK0 1 bssBANK0 dist/default/production/OpenGlow-Std-PIC.X.production.obj
 __size_of_ADC_Init 0 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
-intlevel0 0 0 ENTRY 0 functab /tmp/xcXh7hECS.obj
-intlevel1 0 0 ENTRY 0 functab /tmp/xcXh7hECS.obj
-intlevel2 0 0 ENTRY 0 functab /tmp/xcXh7hECS.obj
-intlevel3 0 0 ENTRY 0 functab /tmp/xcXh7hECS.obj
-intlevel4 0 0 ENTRY 0 functab /tmp/xcXh7hECS.obj
-intlevel5 0 0 ENTRY 0 functab /tmp/xcXh7hECS.obj
+intlevel0 0 0 ENTRY 0 functab /tmp/xcXieql9q.obj
+intlevel1 0 0 ENTRY 0 functab /tmp/xcXieql9q.obj
+intlevel2 0 0 ENTRY 0 functab /tmp/xcXieql9q.obj
+intlevel3 0 0 ENTRY 0 functab /tmp/xcXieql9q.obj
+intlevel4 0 0 ENTRY 0 functab /tmp/xcXieql9q.obj
+intlevel5 0 0 ENTRY 0 functab /tmp/xcXieql9q.obj
 _RC2PPSbits EA2 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 _LED_Get_DutyCycle 3BA 0 CODE 0 text10 dist/default/production/OpenGlow-Std-PIC.X.production.obj
 wtemp0 7E 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
@@ -449,7 +449,7 @@ __size_of__get_significant 0 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.
 _InterruptHandler 8 0 CODE 0 intentry dist/default/production/OpenGlow-Std-PIC.X.production.obj
 _WDTCON 97 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 __end_of_IREF_SetOutput 510 0 CODE 0 text11 dist/default/production/OpenGlow-Std-PIC.X.production.obj
-___int_sp 0 0 STACK 2 stack /tmp/xcXh7hECS.obj
+___int_sp 0 0 STACK 2 stack /tmp/xcXieql9q.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -597,7 +597,7 @@ __CFG_PLLEN$ON 0 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production
 __CFG_BOREN$ON 0 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 __end_of_InterruptHandler 30 0 CODE 0 intentry dist/default/production/OpenGlow-Std-PIC.X.production.obj
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec /tmp/xcXh7hECS.obj
+reset_vec 0 0 CODE 0 reset_vec /tmp/xcXieql9q.obj
 __size_of_InterruptHandler 0 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 __size_of_LED_Init 0 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
@@ -641,8 +641,8 @@ __CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production
 _OPA1CON 511 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 _OPA2CON 515 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 __get_significant@LSB_nMSB 7C 0 COMMON 1 cstackCOMMON dist/default/production/OpenGlow-Std-PIC.X.production.obj
-stackhi 21EF 0 ABS 0 - /tmp/xcXh7hECS.obj
-stacklo 204E 0 ABS 0 - /tmp/xcXh7hECS.obj
+stackhi 21EF 0 ABS 0 - /tmp/xcXieql9q.obj
+stacklo 204E 0 ABS 0 - /tmp/xcXieql9q.obj
 __end_of_LED_Set_DutyCycle 2FE 0 CODE 0 text9 dist/default/production/OpenGlow-Std-PIC.X.production.obj
 _OSCTUNE 98 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj
 _ADCON0bits 9D 0 ABS 0 - dist/default/production/OpenGlow-Std-PIC.X.production.obj

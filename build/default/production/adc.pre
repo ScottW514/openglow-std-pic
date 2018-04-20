@@ -8046,10 +8046,10 @@ void LED_Set_DutyCycle(uint8_t, uint16_t);
 # 63
 uint16_t LED_Get_DutyCycle(uint8_t);
 
-# 58 "adc.h"
+# 67 "adc.h"
 void ADC_Init(void);
 
-# 63
+# 72
 uint16_t ADC_ProcessCapture(uint8_t);
 
 # 38 "adc.c"

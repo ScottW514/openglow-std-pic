@@ -68,7 +68,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LED_Set_DutyCycle `(v ~T0 @X0 0 ef2`uc`ui ]
 "75 i2c.h
 [v __get_significant `(uc ~T0 @X0 0 ef2`ui`uc ]
-"63 adc.h
+"72 adc.h
 [v _ADC_ProcessCapture `(ui ~T0 @X0 0 ef1`uc ]
 "2827 /opt/microchip/xc8/v1.45/include/pic16f1713.h
 [v _DAC1CON1 `Vuc ~T0 @X0 0 e@281 ]
@@ -6028,8 +6028,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
-[; ;adc.h: 58: void ADC_Init(void);
-[; ;adc.h: 63: uint16_t ADC_ProcessCapture(uint8_t);
+[; ;adc.h: 67: void ADC_Init(void);
+[; ;adc.h: 72: uint16_t ADC_ProcessCapture(uint8_t);
 [; ;iref.h: 47: void IREF_Init(void);
 [; ;iref.h: 52: void IREF_SetOutput(uint8_t, uint16_t);
 [; ;leds.h: 53: void LED_Init(void);

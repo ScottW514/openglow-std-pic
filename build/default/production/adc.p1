@@ -5996,8 +5996,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;leds.h: 53: void LED_Init(void);
 [; ;leds.h: 58: void LED_Set_DutyCycle(uint8_t, uint16_t);
 [; ;leds.h: 63: uint16_t LED_Get_DutyCycle(uint8_t);
-[; ;adc.h: 58: void ADC_Init(void);
-[; ;adc.h: 63: uint16_t ADC_ProcessCapture(uint8_t);
+[; ;adc.h: 67: void ADC_Init(void);
+[; ;adc.h: 72: uint16_t ADC_ProcessCapture(uint8_t);
 "38 adc.c
 [v _SENS_VAL `Vui ~T0 @X0 -> 32 `i e ]
 [; ;adc.c: 38: volatile uint16_t SENS_VAL[0x20];

@@ -5965,8 +5965,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
-[; ;adc.h: 58: void ADC_Init(void);
-[; ;adc.h: 63: uint16_t ADC_ProcessCapture(uint8_t);
+[; ;adc.h: 67: void ADC_Init(void);
+[; ;adc.h: 72: uint16_t ADC_ProcessCapture(uint8_t);
 [; ;i2c.h: 44: typedef enum
 [; ;i2c.h: 45: {
 [; ;i2c.h: 46: I2C_W_REQ,
