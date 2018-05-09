@@ -1,24 +1,8 @@
 /*
-    (C) Copyright 2018, Scott Wiederhold
+  Copyright (C) 2018, Scott Wiederhold <s.e.wiederhold@gmail.com>
 
-    This file is part of OpenGlow Standard PIC Firmware.
+  SPDX-License-Identifier:	MIT
 
-    OpenGlow Standard PIC Firmware is free software: you can redistribute it 
-    and/or modify it under the terms of the GNU General Public License as 
-    published by the Free Software Foundation, either version 3 of the License,
-    or (at your option) any later version.
-
-    OpenGlow Standard PIC Firmware is distributed in the hope that it will be
-    useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with OpenGlow Standard PIC Firmware. If not, see 
-    <http://www.gnu.org/licenses/>.
-*/
-/*
-  Author: Scott Wiederhold
   File Name: leds.c
 
   Summary: Firmware package for OpenGlow Standard
@@ -33,7 +17,7 @@
     Initialize LEDs
 */
 void LED_Init(void) {
-    // Setup Timer2 - Our source for the PWMs 
+    // Setup Timer2 - Our source for the PWMs
     PR2 = 0xF9;
     TMR2 = 0x00;
     PIR1bits.TMR2IF = 0;
@@ -42,7 +26,7 @@ void LED_Init(void) {
     // Setup PWM for BTN RED LED
     PWM4CON = 0x80; // PWM4POL active_hi / PWM4OUT disabled / PWM4EN enabled
     PWM4DCH = (uint8_t)((BTN_R_INIT_VALUE & 0x3FC) >> 2);
-    PWM4DCL = (uint8_t)((BTN_R_INIT_VALUE & 0x003) << 6);   
+    PWM4DCL = (uint8_t)((BTN_R_INIT_VALUE & 0x003) << 6);
     CCPTMRSbits.P4TSEL = 0x0; // Select TMR2
 
     // Setup PWM for BTN GRN LED

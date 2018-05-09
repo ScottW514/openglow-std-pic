@@ -1,24 +1,8 @@
 /*
-    (C) Copyright 2018, Scott Wiederhold
+  Copyright (C) 2018, Scott Wiederhold <s.e.wiederhold@gmail.com>
 
-    This file is part of OpenGlow Standard PIC Firmware.
+  SPDX-License-Identifier:	MIT
 
-    OpenGlow Standard PIC Firmware is free software: you can redistribute it 
-    and/or modify it under the terms of the GNU General Public License as 
-    published by the Free Software Foundation, either version 3 of the License,
-    or (at your option) any later version.
-
-    OpenGlow Standard PIC Firmware is distributed in the hope that it will be
-    useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with OpenGlow Standard PIC Firmware. If not, see 
-    <http://www.gnu.org/licenses/>.
-*/
-/*
-  Author: Scott Wiederhold
   File Name: i2c.c
 
   Summary: Firmware package for OpenGlow Standard
@@ -30,7 +14,7 @@
 
 #include "i2c.h"
 
-#define I2C_SLAVE_ADDRESS 0x08 
+#define I2C_SLAVE_ADDRESS 0x08
 
 typedef enum {
     I2C_DATA,
@@ -43,7 +27,7 @@ typedef enum {
 volatile uint8_t I2C_wData = 0x00;
 
 /*
-    Initialize I2C 
+    Initialize I2C
 */
 void I2C_Init(void) {
     // Initialize the hardware
@@ -52,7 +36,7 @@ void I2C_Init(void) {
     SSP1CON2 = 0x01; // SEN clock stretch enabled for send and receive
     SSP1CON3 = 0x00; // Default
     SSP1ADD = I2C_SLAVE_ADDRESS << 1;
-	
+
     // Clear interrupt flag
     PIR1bits.SSP1IF = 0;
     // Enable the master interrupt
@@ -172,7 +156,7 @@ void I2C_Process(I2C_DRIVER_STATUS i2c_bus_state) {
 
 
 /*
- Returns MSB or LSB of 16 bit value 
+ Returns MSB or LSB of 16 bit value
 */
 uint8_t _get_significant(uint16_t value, bool LSB_nMSB) {
     if (LSB_nMSB) {

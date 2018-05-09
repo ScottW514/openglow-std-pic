@@ -1,24 +1,8 @@
 /*
-    (C) Copyright 2018, Scott Wiederhold
+  Copyright (C) 2018, Scott Wiederhold <s.e.wiederhold@gmail.com>
 
-    This file is part of OpenGlow Standard PIC Firmware.
+  SPDX-License-Identifier:	MIT
 
-    OpenGlow Standard PIC Firmware is free software: you can redistribute it 
-    and/or modify it under the terms of the GNU General Public License as 
-    published by the Free Software Foundation, either version 3 of the License,
-    or (at your option) any later version.
-
-    OpenGlow Standard PIC Firmware is distributed in the hope that it will be
-    useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with OpenGlow Standard PIC Firmware. If not, see 
-    <http://www.gnu.org/licenses/>.
-*/
-/*
-  Author: Scott Wiederhold
   File Name: main.c
 
   Summary: Firmware package for OpenGlow Standard
@@ -60,14 +44,14 @@
 void interrupt InterruptHandler(void);
 
 /*
- Main Program 
+ Main Program
 */
 void main(void) {
 
-    // Initialize Registers  
-    LATA = 0x00;    
-    LATB = 0x00;    
-    LATC = 0x00;    
+    // Initialize Registers
+    LATA = 0x00;
+    LATB = 0x00;
+    LATC = 0x00;
     TRISA = 0xFD;
     TRISB = 0xFC;
     TRISC = 0xF8;
@@ -83,7 +67,7 @@ void main(void) {
     ODCONA = 0x00;
     ODCONB = 0x00;
     ODCONC = 0x00;
-    
+
     // Pin Init
     RC2PPSbits.RC2PPS = 0x0C;       //RC2->CCP1
     RC1PPSbits.RC1PPS = 0x0D;       //RC1->CCP2
@@ -105,17 +89,17 @@ void main(void) {
 
     // Watchdog Timer
     WDTCON = 0x16; // WDTPS 1:65536 / SWDTEN OFF
-    
+
     // Init Peripherals
     I2C_Init();
     LED_Init();
     IREF_Init();
     ADC_Init();
-    
+
     // Enable Interrupts
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-    
+
     // Main Loop
     while (1) {
         // Twiddle our thumbs and wait for interrupts
@@ -123,7 +107,7 @@ void main(void) {
 }
 
 /*
- Interrupt Handler 
+ Interrupt Handler
 */
 void interrupt InterruptHandler(void) {
     if(INTCONbits.PEIE == 1)
@@ -131,6 +115,6 @@ void interrupt InterruptHandler(void) {
         if(PIE1bits.SSP1IE == 1 && PIR1bits.SSP1IF == 1)
         {
             I2C_InterruptHandler();
-        } 
-    }      
+        }
+    }
 }

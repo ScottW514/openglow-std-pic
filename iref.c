@@ -1,24 +1,8 @@
 /*
-    (C) Copyright 2018, Scott Wiederhold
+  Copyright (C) 2018, Scott Wiederhold <s.e.wiederhold@gmail.com>
 
-    This file is part of OpenGlow Standard PIC Firmware.
+  SPDX-License-Identifier:	MIT
 
-    OpenGlow Standard PIC Firmware is free software: you can redistribute it 
-    and/or modify it under the terms of the GNU General Public License as 
-    published by the Free Software Foundation, either version 3 of the License,
-    or (at your option) any later version.
-
-    OpenGlow Standard PIC Firmware is distributed in the hope that it will be
-    useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with OpenGlow Standard PIC Firmware. If not, see 
-    <http://www.gnu.org/licenses/>.
-*/
-/*
-  Author: Scott Wiederhold
   File Name: iref.c
 
   Summary: Firmware package for OpenGlow Standard
@@ -43,10 +27,10 @@ void IREF_Init(void) {
     OPA1CON = 0xD2; // OPA1SP High_GBWP_mode / OPA1EN enabled / OPA1PCH DAC1_Output / OPA1UG OPA_Output
 
     // Y-IREF DAC2 / OPA2
-    // DAC2EN enabled; DAC2NSS VSS; DAC2PSS FVR_buf2; DAC2OE1 disabled; DACOE2 disabled; 
+    // DAC2EN enabled; DAC2NSS VSS; DAC2PSS FVR_buf2; DAC2OE1 disabled; DACOE2 disabled;
     DAC2CON0 = 0x88; // DAC2EN enabled / DAC2NSS VSS / DAC2PSS FVR_buf2 / DAC2OE1 disabled / DACOE2 disabled
     DAC2CON1 = 0x00; // Set initial value to 0
-    OPA2CON = 0xD1; // OPA2SP High_GBWP_mode / OPA2EN enabled / OPA2PCH DAC2_Output / OPA2UG OPA_Output 
+    OPA2CON = 0xD1; // OPA2SP High_GBWP_mode / OPA2EN enabled / OPA2PCH DAC2_Output / OPA2UG OPA_Output
 }
 
 /*

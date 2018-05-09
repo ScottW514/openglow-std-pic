@@ -1,24 +1,8 @@
 /*
-    (C) Copyright 2018, Scott Wiederhold
+  Copyright (C) 2018, Scott Wiederhold <s.e.wiederhold@gmail.com>
 
-    This file is part of OpenGlow Standard PIC Firmware.
+  SPDX-License-Identifier:	MIT
 
-    OpenGlow Standard PIC Firmware is free software: you can redistribute it 
-    and/or modify it under the terms of the GNU General Public License as 
-    published by the Free Software Foundation, either version 3 of the License,
-    or (at your option) any later version.
-
-    OpenGlow Standard PIC Firmware is distributed in the hope that it will be
-    useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with OpenGlow Standard PIC Firmware. If not, see 
-    <http://www.gnu.org/licenses/>.
-*/
-/*
-  Author: Scott Wiederhold
   File Name: common.h
 
   Summary: Firmware package for OpenGlow Standard
@@ -33,7 +17,7 @@
 
 #define _XTAL_FREQ  8000000
 
-#define _VERSION 0x0103 // MSB=Major, LSB=Minor 
+#define _VERSION 0x0103 // MSB=Major, LSB=Minor
 #define _VENDOR  0x4F47 // 'OG'
 
 #include <stdbool.h>

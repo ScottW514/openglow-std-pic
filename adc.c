@@ -1,24 +1,9 @@
 /*
-    (C) Copyright 2018, Scott Wiederhold
+  Copyright (C) 2018, Scott Wiederhold <s.e.wiederhold@gmail.com>
 
-    This file is part of OpenGlow Standard PIC Firmware.
+  SPDX-License-Identifier:	MIT
 
-    OpenGlow Standard PIC Firmware is free software: you can redistribute it 
-    and/or modify it under the terms of the GNU General Public License as 
-    published by the Free Software Foundation, either version 3 of the License,
-    or (at your option) any later version.
 
-    OpenGlow Standard PIC Firmware is distributed in the hope that it will be
-    useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with OpenGlow Standard PIC Firmware. If not, see 
-    <http://www.gnu.org/licenses/>.
-*/
-/*
-  Author: Scott Wiederhold
   File Name: adc.c
 
   Summary: Firmware package for OpenGlow Standard
@@ -41,7 +26,7 @@ volatile uint16_t SENS_VAL[0x20];
     Initialize ADC
 */
 void ADC_Init(void) {
-    // Initialize ADC 
+    // Initialize ADC
     ADCON0 = 0x01; // GO_nDONE stop / ADON enabled/CHS AN0
     ADCON1 = 0xD0; // ADFM right / ADNREF VSS /ADPREF VDD / ADCS FOSC/16
     ADCON2 = 0x00; // TRIGSEL no_auto_trigger
