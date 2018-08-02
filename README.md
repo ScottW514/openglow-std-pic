@@ -1,3 +1,5 @@
+## 08/01/2018 - This MCU has been removed from the OpenGlow system and is no longer used.
+
 # Firmware for OpenGlow STD PIC16F1713 MCU.
 I2C BUS0, Slave Address 0x08  
 
